@@ -66,7 +66,7 @@ VALUES ('Shelly', 'turtle','2016-10-12', 'green', 2.4, 4);
 
 
 
-SELECT * FROM Pets WHERE MONTH(DateOfBirth) = 2;
+SELECT * FROM Pets WHERE MONTH(DateOfBirth) = 1;
 
 
 
@@ -108,7 +108,13 @@ WHERE Pets.PetType = 'dog'
 GROUP BY Owners.OwnerId
 HAVING COUNT(*) = 2;
 
-
+SELECT COUNT(*) AS PeopleHavingLabrador
+FROM(
+SELECT FullName, NameOfPet, PetType, Weight
+FROM Owners
+INNER JOIN Pets
+ON Owners.OwnerId = Pets.Owner_Id
+WHERE Pets.PetType = 'labrador') Owners;
 
 SELECT COUNT(*) AS DogsOver30KG FROM(
 SELECT  FullName, NameOfPet, PetType, Weight
